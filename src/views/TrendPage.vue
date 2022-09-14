@@ -1,17 +1,18 @@
 <template>
   <div class="com-page">
-  <Seller></Seller>
+  <Trend></Trend>
     
   </div>
 </template>
 
 <script>
-import Seller from "@/components/Seller.vue";
+// @ is an alias to /src
+import Trend from '@/components/Trend.vue';
 
 export default {
-  name: "SellerPage",
+  name: "TrendPage",
   components: {
-    Seller,
+    Trend,
   },
 };
 </script>
