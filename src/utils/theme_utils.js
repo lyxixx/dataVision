@@ -26,6 +26,6 @@ const theme = {
   }
 }
 
-export function getThemeValue (themeName) {
+export function getThemeValue(themeName) {
   return theme[themeName]
 }

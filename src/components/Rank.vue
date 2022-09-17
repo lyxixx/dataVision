@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   // 地区销量排行
@@ -27,6 +28,7 @@ export default {
     // this.$socket.registerCallBack('rankData', this.getData)
   },
   computed: {
+    ...mapState(['theme'])
   },
   watch: {
     theme() {
@@ -61,7 +63,7 @@ export default {
   methods: {
     // 初始化图表的方法
     initChart() {
-      this.chartInstance = this.$echarts.init(this.$refs.rankRef, 'chalk')
+      this.chartInstance = this.$echarts.init(this.$refs.rankRef, this.theme)
 
       const initOption = {
         title: {

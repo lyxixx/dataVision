@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: "Seller",
   data() {
@@ -16,6 +17,21 @@ export default {
       totalPage: 0,
       timerId: null,
     };
+  },
+  computed: {
+    ...mapState(['theme'])
+  },
+  watch: {  
+      theme() {
+      // 销毁当前的图表
+      this.chartInstance.dispose()
+      // 以最新主题初始化图表对象
+      this.initChart()
+      // 屏幕适配
+      this.screenAdapter()
+      // 渲染数据
+      this.updataChart()
+    }
   },
   mounted() {
     this.initChart(), this.getData();
@@ -29,7 +45,7 @@ export default {
   methods: {
     //初始化
     initChart() {
-      this.chartInstance = this.$echarts.init(this.$refs.ref_seller, "chalk");
+      this.chartInstance = this.$echarts.init(this.$refs.ref_seller, this.theme);
   //图表初始化配置
       var initOption = {
         title: {

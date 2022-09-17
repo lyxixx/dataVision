@@ -6,9 +6,20 @@ import MapPage from '@/views/MapPage.vue'
 import RankPage from '@/views/RankPage.vue'
 import HotPage from '@/views/HotPage.vue'
 import StockPage from '@/views/StockPage.vue' 
+import Home from '@/views/Home.vue' 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: '',
+    component: Home
+  },
+  {
+    path: '/Home',
+    name: 'Home',
+    component: Home
+  },
   {
     path: '/SellerPage',
     name: 'SellerPage',

@@ -6,6 +6,7 @@
 
 <script>
 import { getProvinceMapInfo } from "@/utils/map_utils";
+import { mapMutations, mapState } from 'vuex';
 
 export default {
   name: "Map",
@@ -23,9 +24,11 @@ export default {
       cityMapData: {},
     };
   },
-  computed: {},
+  computed: {
+       ...mapState(['theme'])
+  },
   watch: {
-    /*  theme() {
+     theme() {
       // 销毁当前的图表
       this.chartInstance.dispose()
       // 以最新主题初始化图表对象
@@ -34,7 +37,7 @@ export default {
       this.screenAdapter()
       // 渲染数据
       this.updateChart()
-    }, */
+    },
   },
   created() {
     this.getData();
@@ -63,7 +66,7 @@ export default {
   methods: {
     // 初始化图表的方法
     async initChart() {
-      this.chartInstance = this.$echarts.init(this.$refs.mapRef, "chalk");
+      this.chartInstance = this.$echarts.init(this.$refs.mapRef, this.theme);
       // 获取中国地图的矢量数据： 可以通过发送网络请求获取,static/map/china.json 的数据
       // 由于配置了基础路径，所以不能直接 this.$http.get 来请求 static下的资源
 

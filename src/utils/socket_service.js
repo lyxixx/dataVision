@@ -48,20 +48,28 @@ export default class SocketService {
       this.connectRetryCount++
       setTimeout(() => {
         this.connect()
-      }, 500 * this.connectRetryCount)
+      }, 1000 * this.connectRetryCount)
     }
     // 得到服务端发送过来的数据
     this.ws.onmessage = msg => {
       console.log('从服务端获取到了数据')
       // 真正服务端发送过来的原始数据时在msg中的data字段
-      // console.log(msg.data)
+
+   console.log(msg);
+
       const recvData = JSON.parse(msg.data)
+
+  console.log(recvData);
+
       const socketType = recvData.socketType
       // 判断回调函数是否存在
       if (this.callBackMapping[socketType]) {
         const action = recvData.action
         if (action === 'getData') {
           const realData = JSON.parse(recvData.data)
+
+ console.log(realData);
+
           this.callBackMapping[socketType].call(this, realData)
         } else if (action === 'fullScreen') {
           this.callBackMapping[socketType].call(this, recvData)

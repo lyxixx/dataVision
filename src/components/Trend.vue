@@ -1,9 +1,9 @@
 <template>
   <div class="com-container">
-    <div class="title" @click="showMenu = !showMenu" >
+    <div class="title" @click="showMenu = !showMenu">
       <span class="before-icon">▎</span>
-      <span>{{ showTitle }}</span>
-      <span class="iconfont title-icon" >&#xe6eb;</span>
+      <span :style="titleColor">{{ showTitle }}</span>
+      <span class="iconfont title-icon">&#xe6eb;</span>
       <div class="select-con">
         <div
           class="select-item"
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { getThemeValue } from '@/utils/theme_utils'
 export default {
   name: "Trend",
   data() {
@@ -32,32 +34,55 @@ export default {
       // 默认显示的数据类型
       activeName: "map",
       titleFontSize: 0,
-
     };
   },
-  computed :{
-     selectTypes(){
-         if (!this.allData) return []
+  watch: {
+    theme() {
+      // 销毁当前的图表
+      this.chartInstance.dispose();
+      // 以最新主题初始化图表对象
+      this.initChart();
+      // 屏幕适配
+      this.screenAdapter();
+      // 渲染数据
+      this.updataChart();
+    },
+  },
+  created() {
+    // console.log(this.$socket);
+    //   this.$socket.registerCallBack('trendType',this.getData);
+  },
+
+  mounted() {
+    this.initChart();
+    this.getData();
+    // this.$socket.send({
+    //   action:'getData',
+    //   socketType:'trendData',
+    //   chartName:'trend',
+    //   value:''
+
+    // })
+    window.addEventListener("resize", this.screenAdapter);
+  },
+  computed: {
+    ...mapState(["theme"]),
+    selectTypes() {
+      if (!this.allData) return [];
       // 过度掉当前选中的 类别
-      return this.allData.type.filter(item => item.key !== this.activeName)
-     }  ,
-      showTitle() {
-      if (!this.allData) return ''
-      return this.allData[this.activeName].title
+      return this.allData.type.filter((item) => item.key !== this.activeName);
+    },
+    showTitle() {
+      if (!this.allData) return "";
+      return this.allData[this.activeName].title;
     },
     // 设置给标题的样式
-     comStyle() {
+  
+     titleColor() {
       return {
-        fontSize: this.titleFontSize + 'px',
-        color: getThemeValue(this.theme).titleColor
+        color: getThemeValue(this.theme).titleColor,
       }
-    }
-    
-
-  },
-  mounted() {
-    this.getData(), this.initChart();
-    window.addEventListener("resize", this.screenAdapter);
+    },
   },
   destroyed() {
     clearInterval(this.timerId);
@@ -71,7 +96,7 @@ export default {
     },
     //初始化
     initChart() {
-      this.chartInstance = this.$echarts.init(this.$refs.ref_Trend, "chalk");
+      this.chartInstance = this.$echarts.init(this.$refs.ref_Trend, this.theme);
       //图表初始化配置
       var initOption = {
         xAxis: {
@@ -94,14 +119,13 @@ export default {
           // 当鼠标移入坐标轴的显示提示
           trigger: "axis",
         },
-     
       };
       this.chartInstance.setOption(initOption);
     },
     //获取数据
     async getData() {
       const { data: ret } = await this.$http.get("Trend");
-      console.log(ret);
+      // console.log(ret);
       this.allData = ret;
       this.updataChart();
     },
@@ -146,7 +170,9 @@ export default {
           },
         };
       });
-      const legendArr = valueArr.map((item) => { return item.name; });
+      const legendArr = valueArr.map((item) => {
+        return item.name;
+      });
       const option = {
         xAxis: {
           data: timeArr,
@@ -163,18 +189,18 @@ export default {
       this.timerId = setInterval(() => {}, 3000);
     },
     screenAdapter() {
-      this.titleFontSize = (this.$refs.ref_Trend.offsetWidth / 100) * 3.6
+      this.titleFontSize = (this.$refs.ref_Trend.offsetWidth / 100) * 3.6;
 
       var adapterOption = {
-         legend: {
+        legend: {
           itemWidth: this.titleFontSize,
           itemHeight: this.titleFontSize,
           // 间距
           itemGap: this.titleFontSize,
           textStyle: {
-            fontSize: this.titleFontSize / 1.3
-          }
-        }
+            fontSize: this.titleFontSize / 1.3,
+          },
+        },
       };
       this.chartInstance.setOption(adapterOption);
       this.chartInstance.resize();

@@ -11,7 +11,7 @@ export default new Vuex.Store({
     changeTheme(state) {
       if (state.theme === 'chalk') {
         // state.theme = 'vintage'
-        state.theme = 'westeros'
+        state.theme = 'vintage'
       } else {
         state.theme = 'chalk'
       }
