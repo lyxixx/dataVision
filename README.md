@@ -1,24 +1,63 @@
 # vision
 
-## Project setup
-```
-npm install
-```
+## 一、技术栈
 
-### Compiles and hot-reloads for development
+该项目主要使用 `Vue`搭配`Echarts`采用组件化的方式开发完成,此外项目中陆续使用有
+
+- VueRouter
+- VueX
+- WebSocket
+- axios
+- webpack
+- ES6+
+- less
+
+## 二、如何运行该项目？
+
 ```
+// 首先你应当克隆该项目
+git clone https://github.com/lyxixx/dataVision.git
+
+// 进入该项目
+cd dataVision
+
+// 安装对应依赖
+cnpm install
+
+// 访问线上后台系统
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+##  三、运行效果截图
 
-### Lints and fixes files
-```
-npm run lint
-```
+#### 2.1 黑色主题
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![image-20220919153159425](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220919153159425.png)
+
+####  2.2 亮色主题
+
+![image-20220919153422002](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220919153422002.png)
+
+####  2.3 热销商品占比
+
+![image-20220919153834945](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220919153834945.png)
+
+####  2.4 商家分布
+
+![image-20220919153853624](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220919153853624.png)
+
+####  2.5 地区销售排行
+
+![image-20220919153904255](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220919153904255.png)
+
+####  2.6 商家销售统计
+
+![image-20220919153911720](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220919153911720.png)
+
+####  2.7 库存和销量分析
+
+![image-20220919153923609](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220919153923609.png)
+
+####  2.8 地区销量趋势
+
+![image-20220919153932610](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220919153932610.png)
