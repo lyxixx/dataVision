@@ -60,4 +60,4 @@ npm run serve
 
 ####  2.8 地区销量趋势
 
-![image-20220919153932610](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220919153932610.png)
+![地区](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\地区.png)
