@@ -61,3 +61,9 @@ npm run serve
 ####  2.8 地区销量趋势
 
 ![地区](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\地区.png)
+
+
+
+
+
+![image-20220919153923609](D:%5Cdesktop%5Ccode%5C%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE%5Cvision%5Cimage-20220919153923609.png)
