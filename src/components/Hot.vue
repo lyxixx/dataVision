@@ -124,6 +124,7 @@ export default {
     // 发送请求，获取数据
     async getData() {
       const { data: res } = await this.$http.get('/hotproduct')
+      console.log(res);
       this.allData = res
       this.updateChart()
     },
