@@ -67,3 +67,5 @@ npm run serve
 
 
 ![地区](C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C%E5%9C%B0%E5%8C%BA.png)
+
+![image-20220608150139753](https://150-9155-1312350958.cos.ap-chengdu.myqcloud.com/img202206091116053.png)
